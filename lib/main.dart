@@ -1,8 +1,28 @@
+import 'package:agry_go/src/config/app_api_config.dart';
 import 'package:agry_go/src/config/app_setting_config.dart';
 import 'package:agry_go/src/routes/route_config.dart';
+import 'package:agry_go/src/utils/dio_exception.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+final dio = Dio();
+
+Future<void> configureDio() async {
+  // Set default configs
+  dio.options.baseUrl = AppAPIConfig.baseUrl;
+  dio.options.connectTimeout = const Duration(seconds: 30);
+  dio.options.receiveTimeout = const Duration(seconds: 60);
+  dio.interceptors.add(InterceptorsWrapper(
+    onError: (DioException e, handler) {
+      var error = DioExceptionInterceptor.fromDioError(e);
+      throw error.errorMessage;
+    },
+  ));
+}
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await configureDio();
   runApp(const MyApp());
 }
 
