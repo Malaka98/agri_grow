@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -36,7 +38,9 @@ class _DiseaseViewState extends State<DiseaseView> {
                           spreadRadius: 1,
                           blurRadius: 8,
                           offset: const Offset(0, 1))
-                    ])),
+                  ]),
+              child: Image.file(File(widget.image.path)),
+            ),
           ),
         ],
       ),

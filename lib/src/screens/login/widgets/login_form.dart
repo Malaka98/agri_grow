@@ -57,7 +57,7 @@ class LoginFrom extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                   style: TextButton.styleFrom(
-                      backgroundColor: Colors.grey.shade700,
+                      backgroundColor: Colors.green.shade700,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5))),
                   onPressed: () {
@@ -67,7 +67,7 @@ class LoginFrom extends StatelessWidget {
                     }
                   },
                   child: const Text(
-                      style: TextStyle(color: Colors.white), 'Sign In'))),
+                      style: TextStyle(color: Colors.white), 'Log In'))),
           const SizedBox(
             height: 20,
           )

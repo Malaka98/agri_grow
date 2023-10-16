@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../routes/route_config.dart';
 import '../../widgets/back_btn_leading.dart';
 
 class Diseases extends StatefulWidget {
@@ -82,7 +84,9 @@ class _DiseasesState extends State<Diseases> {
                       size: 52,
                     ),
                     onTap: () {
-                      getImageFromCamera();
+                      getImageFromCamera().then((value) {
+                        context.push(Routes.diseasesView.path, extra: _image);
+                      });
                     },
                   ),
                   Container(
@@ -94,7 +98,9 @@ class _DiseasesState extends State<Diseases> {
                         size: 100,
                       ),
                       onTap: () {
-                        getImageFromGallery();
+                        getImageFromGallery().then((value) {
+                          context.push(Routes.diseasesView.path, extra: _image);
+                        });
                       },
                     ),
                   )

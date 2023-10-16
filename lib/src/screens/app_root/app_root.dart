@@ -24,7 +24,7 @@ class _AppRootState extends State<AppRoot> {
                   width: double.infinity,
                   child: ElevatedButton(
                       style: TextButton.styleFrom(
-                          backgroundColor: Colors.grey.shade700,
+                          backgroundColor: Colors.green.shade700,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5))),
                       onPressed: () {

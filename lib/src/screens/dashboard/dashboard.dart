@@ -31,7 +31,7 @@ class _DashboardState extends State<Dashboard> {
                     color: Colors.white,
                     boxShadow: [
                       BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
+                          color: Colors.green.withOpacity(0.3),
                           spreadRadius: 1,
                           blurRadius: 8,
                           offset: const Offset(0, 1))
@@ -59,7 +59,7 @@ class _DashboardState extends State<Dashboard> {
                           color: Colors.white,
                           boxShadow: [
                             BoxShadow(
-                                color: Colors.black.withOpacity(0.2),
+                                color: Colors.green.withOpacity(0.3),
                                 spreadRadius: 1,
                                 blurRadius: 8,
                                 offset: const Offset(0, 1))
@@ -71,7 +71,7 @@ class _DashboardState extends State<Dashboard> {
                           Icon(
                             Icons.home,
                             size: 36,
-                            color: Colors.black,
+                            color: Colors.green,
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 2.0),
@@ -100,7 +100,7 @@ class _DashboardState extends State<Dashboard> {
                           color: Colors.white,
                           boxShadow: [
                             BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
+                                color: Colors.green.withOpacity(0.3),
                                 spreadRadius: 1,
                                 blurRadius: 8,
                                 offset: const Offset(0, 2))
@@ -112,7 +112,7 @@ class _DashboardState extends State<Dashboard> {
                           Icon(
                             Icons.list_outlined,
                             size: 36,
-                            color: Colors.black,
+                            color: Colors.green,
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 2.0),
@@ -140,7 +140,7 @@ class _DashboardState extends State<Dashboard> {
                           color: Colors.white,
                           boxShadow: [
                             BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
+                                color: Colors.green.withOpacity(0.3),
                                 spreadRadius: 1,
                                 blurRadius: 8,
                                 offset: const Offset(0, 2))
@@ -152,7 +152,7 @@ class _DashboardState extends State<Dashboard> {
                           Icon(
                             Icons.account_tree_rounded,
                             size: 36,
-                            color: Colors.black,
+                            color: Colors.green,
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 2.0),
@@ -180,7 +180,7 @@ class _DashboardState extends State<Dashboard> {
                           color: Colors.white,
                           boxShadow: [
                             BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
+                                color: Colors.green.withOpacity(0.3),
                                 spreadRadius: 1,
                                 blurRadius: 8,
                                 offset: const Offset(0, 2))
@@ -192,7 +192,7 @@ class _DashboardState extends State<Dashboard> {
                           Icon(
                             Icons.account_tree_rounded,
                             size: 36,
-                            color: Colors.black,
+                            color: Colors.green,
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 2.0),
