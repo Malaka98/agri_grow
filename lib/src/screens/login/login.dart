@@ -1,5 +1,7 @@
+import 'package:agry_go/src/routes/route_config.dart';
 import 'package:agry_go/src/screens/login/widgets/login_form.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -9,7 +11,9 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  void loginHandler(username, password) {}
+  void loginHandler(username, password) {
+    context.push(Routes.dashboard.path);
+  }
 
   @override
   Widget build(BuildContext context) {
