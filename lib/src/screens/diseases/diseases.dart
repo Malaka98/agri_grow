@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../widgets/back_btn_leading.dart';
 
@@ -10,6 +11,31 @@ class Diseases extends StatefulWidget {
 }
 
 class _DiseasesState extends State<Diseases> {
+  late XFile _image;
+  final ImagePicker picker = ImagePicker();
+
+  //Image Picker function to get image from gallery
+  Future getImageFromGallery() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = XFile(pickedFile.path);
+      }
+    });
+  }
+
+  //Image Picker function to get image from camera
+  Future getImageFromCamera() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.camera);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = XFile(pickedFile.path);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +81,9 @@ class _DiseasesState extends State<Diseases> {
                       color: Colors.lightGreenAccent.shade400,
                       size: 52,
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      getImageFromCamera();
+                    },
                   ),
                   Container(
                     margin: const EdgeInsets.all(10.0),
@@ -65,7 +93,9 @@ class _DiseasesState extends State<Diseases> {
                         color: Colors.lightGreenAccent.shade400,
                         size: 100,
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        getImageFromGallery();
+                      },
                     ),
                   )
                 ],
