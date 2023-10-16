@@ -1,5 +1,8 @@
 import 'package:agry_go/src/screens/dashboard/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../routes/route_config.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -166,7 +169,7 @@ class _DashboardState extends State<Dashboard> {
                       ),
                     ),
                     onTap: () {
-                      // context.push(Routes.openCycleCount.path);
+                      context.push(Routes.diseases.path);
                     },
                   ),
                   InkWell(
