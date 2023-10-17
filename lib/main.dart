@@ -10,8 +10,8 @@ final dio = Dio();
 Future<void> configureDio() async {
   // Set default configs
   dio.options.baseUrl = AppAPIConfig.baseUrl;
-  dio.options.connectTimeout = const Duration(seconds: 30);
-  dio.options.receiveTimeout = const Duration(seconds: 60);
+  dio.options.connectTimeout = const Duration(seconds: 180);
+  dio.options.receiveTimeout = const Duration(seconds: 180);
   dio.interceptors.add(InterceptorsWrapper(
     onError: (DioException e, handler) {
       var error = DioExceptionInterceptor.fromDioError(e);

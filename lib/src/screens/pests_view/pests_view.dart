@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../model/predict_result.dart';
 import '../../repository/predict_repository.dart';
 import '../../widgets/back_btn_leading.dart';
 
@@ -27,7 +28,9 @@ class _PestsViewState extends State<PestsView> {
           leading: const BackButtonLeading(),
           leadingWidth: 100,
           toolbarHeight: 60,
-          centerTitle: true),
+        centerTitle: true,
+        title: const Text("Pests"),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
@@ -78,12 +81,9 @@ class _PestsViewState extends State<PestsView> {
                           setState(() {
                             isLoading = true;
                           });
-                          checkPets(widget.image).then((value) {
+                          checkPets(widget.image).then((PredictResult value) {
                             setState(() {
-                              result = value['detection_result'];
-                            });
-                          }).whenComplete(() {
-                            setState(() {
+                              result = value.definitionResults;
                               isLoading = false;
                             });
                           });

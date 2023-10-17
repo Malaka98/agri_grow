@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:agry_go/src/model/predict_result.dart';
 import 'package:agry_go/src/repository/predict_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -27,7 +28,9 @@ class _DeficienciesViewState extends State<DeficienciesView> {
           leading: const BackButtonLeading(),
           leadingWidth: 100,
           toolbarHeight: 60,
-          centerTitle: true),
+        centerTitle: true,
+        title: const Text("Deficiencies"),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
@@ -78,12 +81,10 @@ class _DeficienciesViewState extends State<DeficienciesView> {
                           setState(() {
                             isLoading = true;
                           });
-                          checkDeficiencies(widget.image).then((value) {
+                          checkDeficiencies(widget.image)
+                              .then((PredictResult value) {
                             setState(() {
-                              result = value['detection_result'];
-                            });
-                          }).whenComplete(() {
-                            setState(() {
+                              result = value.definitionResults;
                               isLoading = false;
                             });
                           });
