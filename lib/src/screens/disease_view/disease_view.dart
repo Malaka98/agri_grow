@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:agry_go/src/repository/diseases_repository.dart';
+import 'package:agry_go/src/repository/predict_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -77,7 +77,7 @@ class _DiseaseViewState extends State<DiseaseView> {
                           setState(() {
                             isLoading = true;
                           });
-                          checkDiseases(widget.image).then((value) {
+                          checkPets(widget.image).then((value) {
                             setState(() {
                               result = value['detection_result'];
                             });
