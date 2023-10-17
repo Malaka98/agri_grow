@@ -84,7 +84,7 @@ class _DeficienciesViewState extends State<DeficienciesView> {
                           checkDeficiencies(widget.image)
                               .then((PredictResult value) {
                             setState(() {
-                              result = value.definitionResults;
+                              result = value.detectionResults;
                               isLoading = false;
                             });
                           });

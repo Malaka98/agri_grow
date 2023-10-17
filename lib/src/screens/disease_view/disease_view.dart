@@ -84,7 +84,7 @@ class _DiseaseViewState extends State<DiseaseView> {
                           checkDiseases(widget.image)
                               .then((PredictResult value) {
                             setState(() {
-                              result = value.definitionResults;
+                              result = value.detectionResults;
                               isLoading = false;
                             });
                           });

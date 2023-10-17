@@ -18,8 +18,8 @@ class PestsView extends StatefulWidget {
 }
 
 class _PestsViewState extends State<PestsView> {
-  bool isLoading = false;
-  String result = "Identify your Plant's Deficiencies";
+  bool _isLoading = false;
+  String _result = "Identify your Plant's Deficiencies";
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +50,7 @@ class _PestsViewState extends State<PestsView> {
                   ]),
               child: Image.file(File(widget.image.path)),
             ),
-            isLoading ? const CircularProgressIndicator() : Text(result),
+            _isLoading ? const CircularProgressIndicator() : Text(_result),
             Column(
               children: [
                 SizedBox(
@@ -79,12 +79,15 @@ class _PestsViewState extends State<PestsView> {
                                 borderRadius: BorderRadius.circular(8))),
                         onPressed: () {
                           setState(() {
-                            isLoading = true;
+                            _isLoading = true;
                           });
                           checkPets(widget.image).then((PredictResult value) {
                             setState(() {
-                              result = value.definitionResults;
-                              isLoading = false;
+                              _result = value.detectionResults;
+                            });
+                          }).whenComplete(() {
+                            setState(() {
+                              _isLoading = false;
                             });
                           });
                         },

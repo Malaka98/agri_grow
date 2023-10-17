@@ -1,15 +1,15 @@
 class PredictResult {
-  final String definitionResults;
+  final String detectionResults;
 
   PredictResult({
-    required this.definitionResults,
+    required this.detectionResults,
   });
 
   factory PredictResult.fromJson(Map<String, dynamic> json) => PredictResult(
-        definitionResults: json["definition_results"],
+        detectionResults: json["detection_results"],
       );
 
   Map<String, dynamic> toJson() => {
-        "definition_results": definitionResults,
+        "detection_results": detectionResults,
       };
 }

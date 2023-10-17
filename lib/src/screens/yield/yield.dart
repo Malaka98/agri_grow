@@ -1,3 +1,4 @@
+import 'package:agry_go/src/repository/predict_repository.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/back_btn_leading.dart';
@@ -12,6 +13,8 @@ class Yield extends StatefulWidget {
 class _YieldState extends State<Yield> {
   static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String? _txt = "";
+  bool _isLoading = false;
+  String _result = "Result";
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +25,7 @@ class _YieldState extends State<Yield> {
         toolbarHeight: 60,
         centerTitle: true,
         title: const Text("Yield"),
-      ),
+          scrolledUnderElevation: 0),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Form(
@@ -33,6 +36,7 @@ class _YieldState extends State<Yield> {
                   padding: const EdgeInsets.only(top: 10.0, bottom: 30.0),
                   child: Container(
                       height: 150.0,
+                      width: double.infinity,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.white,
@@ -42,10 +46,20 @@ class _YieldState extends State<Yield> {
                                 spreadRadius: 1,
                                 blurRadius: 8,
                                 offset: const Offset(0, 1))
-                          ])),
+                          ]),
+                      child: Container(
+                        margin: const EdgeInsets.all(10.0),
+                        child: _isLoading
+                            ? const Center(child: CircularProgressIndicator())
+                            : SingleChildScrollView(
+                                child: Text(
+                                _result,
+                                style: const TextStyle(fontSize: 16),
+                              )),
+                      )),
                 ),
                 TextFormField(
-                  maxLength: 50,
+                  maxLength: 300,
                   // validator: (text) {
                   //   return ref
                   //       .read(authServiceProvider(ref))
@@ -70,6 +84,18 @@ class _YieldState extends State<Yield> {
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();
+                            setState(() {
+                              _isLoading = true;
+                            });
+                            yieldApi(_txt!).then((value) {
+                              setState(() {
+                                _result = value.msg;
+                              });
+                            }).whenComplete(() {
+                              setState(() {
+                                _isLoading = false;
+                              });
+                            });
                           }
                         },
                         child: const Text(

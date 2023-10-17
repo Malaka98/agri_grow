@@ -1,4 +1,3 @@
-import 'package:agry_go/src/config/app_api_config.dart';
 import 'package:agry_go/src/config/app_setting_config.dart';
 import 'package:agry_go/src/routes/route_config.dart';
 import 'package:agry_go/src/utils/dio_exception.dart';
@@ -9,7 +8,6 @@ final dio = Dio();
 
 Future<void> configureDio() async {
   // Set default configs
-  dio.options.baseUrl = AppAPIConfig.baseUrl;
   dio.options.connectTimeout = const Duration(seconds: 180);
   dio.options.receiveTimeout = const Duration(seconds: 180);
   dio.interceptors.add(InterceptorsWrapper(
