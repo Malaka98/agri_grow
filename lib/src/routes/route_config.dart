@@ -6,6 +6,7 @@ import 'package:agry_go/src/screens/diseases/diseases.dart';
 import 'package:agry_go/src/screens/login/login.dart';
 import 'package:agry_go/src/screens/pests/pests.dart';
 import 'package:agry_go/src/screens/pests_view/pests_view.dart';
+import 'package:agry_go/src/screens/yield/yield.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
@@ -22,7 +23,8 @@ enum Routes {
   pests('pests', '/pests'),
   pestsView('pests_view', '/pests_view'),
   deficiencies('deficiencies', '/deficiencies'),
-  deficienciesView('deficiencies_view', '/deficiencies_view');
+  deficienciesView('deficiencies_view', '/deficiencies_view'),
+  yield('yield', '/yield');
 
   const Routes(this.name, this.path);
 
@@ -107,4 +109,10 @@ final GoRouter routerConfig =
               image: image,
             ));
       }),
+  GoRoute(
+      name: Routes.yield.name,
+      path: Routes.yield.path,
+      pageBuilder: (BuildContext context, GoRouterState state) {
+        return customPageTransition(context, state, const Yield());
+      })
 ]);

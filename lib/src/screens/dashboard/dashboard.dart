@@ -211,7 +211,7 @@ class _DashboardState extends State<Dashboard> {
                       ),
                     ),
                     onTap: () {
-                      // context.push(Routes.openCycleCount.path);
+                      context.push(Routes.yield.path);
                     },
                   )
                 ],
