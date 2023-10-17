@@ -1,22 +1,22 @@
 import 'dart:io';
 
-import 'package:agry_go/src/repository/predict_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../repository/predict_repository.dart';
 import '../../widgets/back_btn_leading.dart';
 
-class DiseaseView extends StatefulWidget {
+class PestsView extends StatefulWidget {
   final XFile image;
 
-  const DiseaseView({Key? key, required this.image}) : super(key: key);
+  const PestsView({Key? key, required this.image}) : super(key: key);
 
   @override
-  State<DiseaseView> createState() => _DiseaseViewState();
+  State<PestsView> createState() => _PestsViewState();
 }
 
-class _DiseaseViewState extends State<DiseaseView> {
+class _PestsViewState extends State<PestsView> {
   bool isLoading = false;
   String result = "Identify your Plant's Deficiencies";
 
@@ -78,7 +78,7 @@ class _DiseaseViewState extends State<DiseaseView> {
                           setState(() {
                             isLoading = true;
                           });
-                          checkDiseases(widget.image).then((value) {
+                          checkPets(widget.image).then((value) {
                             setState(() {
                               result = value['detection_result'];
                             });

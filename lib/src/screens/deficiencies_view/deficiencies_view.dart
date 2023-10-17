@@ -7,16 +7,16 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../widgets/back_btn_leading.dart';
 
-class DiseaseView extends StatefulWidget {
+class DeficienciesView extends StatefulWidget {
   final XFile image;
 
-  const DiseaseView({Key? key, required this.image}) : super(key: key);
+  const DeficienciesView({Key? key, required this.image}) : super(key: key);
 
   @override
-  State<DiseaseView> createState() => _DiseaseViewState();
+  State<DeficienciesView> createState() => _DeficienciesViewState();
 }
 
-class _DiseaseViewState extends State<DiseaseView> {
+class _DeficienciesViewState extends State<DeficienciesView> {
   bool isLoading = false;
   String result = "Identify your Plant's Deficiencies";
 
@@ -78,7 +78,7 @@ class _DiseaseViewState extends State<DiseaseView> {
                           setState(() {
                             isLoading = true;
                           });
-                          checkDiseases(widget.image).then((value) {
+                          checkDeficiencies(widget.image).then((value) {
                             setState(() {
                               result = value['detection_result'];
                             });
