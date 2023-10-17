@@ -29,6 +29,8 @@ class _DashboardState extends State<Dashboard> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: Colors.white,
+                    image: const DecorationImage(
+                        image: AssetImage("assets/agrygo.png")),
                     boxShadow: [
                       BoxShadow(
                           color: Colors.black.withOpacity(0.3),

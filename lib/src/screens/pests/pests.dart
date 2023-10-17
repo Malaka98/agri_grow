@@ -57,6 +57,8 @@ class _PestsState extends State<Pests> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: Colors.white,
+                      image: const DecorationImage(
+                          image: AssetImage("assets/img.png")),
                       boxShadow: [
                         BoxShadow(
                             color: Colors.black.withOpacity(0.2),
