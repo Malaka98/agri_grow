@@ -46,7 +46,7 @@ class _PestsState extends State<Pests> {
           leadingWidth: 100,
           toolbarHeight: 60,
           centerTitle: true,
-          title: const Text("Diseases"),
+          title: const Text("Pests"),
         ),
         body: Column(
           children: [
@@ -85,7 +85,7 @@ class _PestsState extends State<Pests> {
                     ),
                     onTap: () {
                       getImageFromCamera().then((value) {
-                        context.push(Routes.diseasesView.path, extra: _image);
+                        context.push(Routes.pestsView.path, extra: _image);
                       });
                     },
                   ),
@@ -99,7 +99,7 @@ class _PestsState extends State<Pests> {
                       ),
                       onTap: () {
                         getImageFromGallery().then((value) {
-                          context.push(Routes.diseasesView.path, extra: _image);
+                          context.push(Routes.pestsView.path, extra: _image);
                         });
                       },
                     ),

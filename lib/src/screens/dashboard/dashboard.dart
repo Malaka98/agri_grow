@@ -88,7 +88,7 @@ class _DashboardState extends State<Dashboard> {
                       ),
                     ),
                     onTap: () {
-                      // context.push(Routes.orderList.path);
+                      context.push(Routes.deficiencies.path);
                     },
                   ),
                   InkWell(
@@ -129,7 +129,7 @@ class _DashboardState extends State<Dashboard> {
                       ),
                     ),
                     onTap: () {
-                      // context.push(Routes.openCycleCount.path);
+                      context.push(Routes.pests.path);
                     },
                   ),
                   InkWell(

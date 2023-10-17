@@ -46,7 +46,7 @@ class _DeficienciesState extends State<Deficiencies> {
           leadingWidth: 100,
           toolbarHeight: 60,
           centerTitle: true,
-          title: const Text("Diseases"),
+          title: const Text("Deficiencies"),
         ),
         body: Column(
           children: [
@@ -85,7 +85,8 @@ class _DeficienciesState extends State<Deficiencies> {
                     ),
                     onTap: () {
                       getImageFromCamera().then((value) {
-                        context.push(Routes.diseasesView.path, extra: _image);
+                        context.push(Routes.deficienciesView.path,
+                            extra: _image);
                       });
                     },
                   ),
@@ -99,7 +100,8 @@ class _DeficienciesState extends State<Deficiencies> {
                       ),
                       onTap: () {
                         getImageFromGallery().then((value) {
-                          context.push(Routes.diseasesView.path, extra: _image);
+                          context.push(Routes.deficienciesView.path,
+                              extra: _image);
                         });
                       },
                     ),
