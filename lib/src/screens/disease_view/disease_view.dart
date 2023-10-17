@@ -16,6 +16,8 @@ class DiseaseView extends StatefulWidget {
 }
 
 class _DiseaseViewState extends State<DiseaseView> {
+  bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +45,9 @@ class _DiseaseViewState extends State<DiseaseView> {
                   ]),
               child: Image.file(File(widget.image.path)),
             ),
-            const Text("Identify your Plant's Deficiencies"),
+            isLoading
+                ? const CircularProgressIndicator()
+                : const Text("Identify your Plant's Deficiencies"),
             Column(
               children: [
                 SizedBox(
@@ -69,9 +73,15 @@ class _DiseaseViewState extends State<DiseaseView> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8))),
                         onPressed: () {
-                          // context.push(Routes.login.path);
-                          checkDiseases(widget.image).then((value) {
-                            print(value);
+                          setState(() {
+                            isLoading = true;
+                          });
+                          checkDiseases(widget.image)
+                              .then((value) {})
+                              .whenComplete(() {
+                            setState(() {
+                              isLoading = false;
+                            });
                           });
                         },
                         child: const Text(
