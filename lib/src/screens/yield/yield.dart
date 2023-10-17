@@ -99,7 +99,7 @@ class _YieldState extends State<Yield> {
                           }
                         },
                         child: const Text(
-                            style: TextStyle(color: Colors.white), 'Log In')))
+                            style: TextStyle(color: Colors.white), 'Submit')))
               ],
             )),
       ),
