@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:agry_go/src/repository/diseases_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -23,26 +24,62 @@ class _DiseaseViewState extends State<DiseaseView> {
           leadingWidth: 100,
           toolbarHeight: 60,
           centerTitle: true),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Container(
-                height: 150.0,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          spreadRadius: 1,
-                          blurRadius: 8,
-                          offset: const Offset(0, 1))
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              height: 300.0,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        spreadRadius: 1,
+                        blurRadius: 8,
+                        offset: const Offset(0, 1))
                   ]),
               child: Image.file(File(widget.image.path)),
             ),
-          ),
-        ],
+            const Text("Identify your Plant's Deficiencies"),
+            Column(
+              children: [
+                SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                        style: TextButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                side: const BorderSide(
+                                    color: Colors.green, width: 1.5))),
+                        onPressed: () {
+                          // context.push(Routes.login.path);
+                        },
+                        child: const Text(
+                            style: TextStyle(color: Colors.black),
+                            'Capture another image'))),
+                SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                        style: TextButton.styleFrom(
+                            backgroundColor: Colors.green.shade700,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8))),
+                        onPressed: () {
+                          // context.push(Routes.login.path);
+                          checkDiseases(widget.image).then((value) {
+                            print(value);
+                          });
+                        },
+                        child: const Text(
+                            style: TextStyle(color: Colors.white), 'Upload')))
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

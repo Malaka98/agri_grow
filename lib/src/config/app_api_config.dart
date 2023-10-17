@@ -1,3 +1,5 @@
 class AppAPIConfig {
-  static const baseUrl = "http://192.168.8.101:8000/api/method";
+  static const baseUrl = "https://ec64-112-135-56-18.ngrok-free.app";
+  static const detectDiseaseApi = "/des";
+  static const detectPetsApi = "/detect";
 }

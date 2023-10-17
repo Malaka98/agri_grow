@@ -31,7 +31,7 @@ class _DashboardState extends State<Dashboard> {
                     color: Colors.white,
                     boxShadow: [
                       BoxShadow(
-                          color: Colors.green.withOpacity(0.3),
+                          color: Colors.black.withOpacity(0.3),
                           spreadRadius: 1,
                           blurRadius: 8,
                           offset: const Offset(0, 1))
@@ -133,7 +133,8 @@ class _DashboardState extends State<Dashboard> {
                     },
                   ),
                   InkWell(
-                    child: Container(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Ink(
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
@@ -173,7 +174,8 @@ class _DashboardState extends State<Dashboard> {
                     },
                   ),
                   InkWell(
-                    child: Container(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Ink(
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
