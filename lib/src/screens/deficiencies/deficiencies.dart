@@ -46,71 +46,105 @@ class _DeficienciesState extends State<Deficiencies> {
           leadingWidth: 100,
           toolbarHeight: 60,
           centerTitle: true,
-          title: const Text("Deficiencies"),
         ),
         body: Column(
           children: [
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Container(
-                  height: 150.0,
+                  width: double.infinity,
+                  height: 200.0,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: Colors.white,
                       image: const DecorationImage(
-                          image: AssetImage("assets/img.png")),
+                          image: AssetImage("assets/img2.png"),
+                          fit: BoxFit.cover),
                       boxShadow: [
                         BoxShadow(
                             color: Colors.black.withOpacity(0.2),
                             spreadRadius: 1,
                             blurRadius: 8,
                             offset: const Offset(0, 1))
-                      ])),
-            ),
+                      ]),
+                  child: const Text("Deficiencies",
+                      textAlign: TextAlign.center,
+                      style:
+                          TextStyle(fontSize: 36, fontWeight: FontWeight.w600)),
+                )),
             const Text(
               "Touch To Identify",
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
             ),
             const SizedBox(height: 10.0),
             Flexible(
-                child: SizedBox(
-              height: double.infinity,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  InkWell(
-                    child: Icon(
-                      Icons.camera_alt_outlined,
-                      color: Colors.lightGreenAccent.shade400,
-                      size: 52,
-                    ),
-                    onTap: () {
-                      getImageFromCamera().then((value) {
-                        context.push(Routes.deficienciesView.path,
-                            extra: _image);
-                      });
-                    },
+                child: Container(
+                  height: double.infinity,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage("assets/getimg.png"),
+                        alignment: Alignment.bottomCenter),
                   ),
-                  Container(
-                    margin: const EdgeInsets.all(10.0),
-                    child: InkWell(
-                      child: Icon(
-                        Icons.photo_library_outlined,
-                        color: Colors.lightGreenAccent.shade400,
-                        size: 100,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        height: 64,
+                        width: 64,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black.withOpacity(0.2),
+                                  spreadRadius: 1,
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 1))
+                            ],
+                            borderRadius: BorderRadius.circular(50)),
+                        child: InkWell(
+                          child: Icon(
+                            Icons.camera_alt_outlined,
+                            color: Colors.lightGreenAccent.shade400,
+                            size: 52,
+                          ),
+                          onTap: () {
+                            getImageFromCamera().then((value) {
+                              context.push(Routes.deficienciesView.path, extra: _image);
+                            });
+                          },
+                        ),
                       ),
-                      onTap: () {
-                        getImageFromGallery().then((value) {
-                          context.push(Routes.deficienciesView.path,
-                              extra: _image);
-                        });
-                      },
-                    ),
-                  )
-                ],
-              ),
-            ))
+                      Container(
+                        height: 130,
+                        width: 130,
+                        margin: const EdgeInsets.all(20.0),
+                        decoration: BoxDecoration(
+                            color: Colors.green,
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black.withOpacity(0.2),
+                                  spreadRadius: 1,
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 1))
+                            ],
+                            borderRadius: BorderRadius.circular(60)),
+                        child: InkWell(
+                          child: const Icon(
+                            Icons.photo_library_outlined,
+                            color: Colors.white,
+                            size: 100,
+                          ),
+                          onTap: () {
+                            getImageFromGallery().then((value) {
+                              context.push(Routes.deficienciesView.path, extra: _image);
+                            });
+                          },
+                        ),
+                      )
+                    ],
+                  ),
+                ))
           ],
         ));
   }

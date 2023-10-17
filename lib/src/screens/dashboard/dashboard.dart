@@ -71,7 +71,7 @@ class _DashboardState extends State<Dashboard> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Icon(
-                            Icons.home,
+                            Icons.add_a_photo_outlined,
                             size: 36,
                             color: Colors.green,
                           ),
@@ -112,7 +112,7 @@ class _DashboardState extends State<Dashboard> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Icon(
-                            Icons.list_outlined,
+                            Icons.adb_outlined,
                             size: 36,
                             color: Colors.green,
                           ),
@@ -194,14 +194,14 @@ class _DashboardState extends State<Dashboard> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Icon(
-                            Icons.account_tree_rounded,
+                            Icons.add_chart_outlined,
                             size: 36,
                             color: Colors.green,
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 2.0),
                             child: Text(
-                              "Yield Enhancement Recommendation",
+                              "Get Recommendation",
                               style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 color: Colors.black,

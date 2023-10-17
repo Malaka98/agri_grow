@@ -85,6 +85,9 @@ class _DiseaseViewState extends State<DiseaseView> {
                               .then((PredictResult value) {
                             setState(() {
                               result = value.detectionResults;
+                            });
+                          }).whenComplete(() {
+                            setState(() {
                               isLoading = false;
                             });
                           });
