@@ -17,6 +17,7 @@ class DiseaseView extends StatefulWidget {
 
 class _DiseaseViewState extends State<DiseaseView> {
   bool isLoading = false;
+  String result = "Identify your Plant's Deficiencies";
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +46,7 @@ class _DiseaseViewState extends State<DiseaseView> {
                   ]),
               child: Image.file(File(widget.image.path)),
             ),
-            isLoading
-                ? const CircularProgressIndicator()
-                : const Text("Identify your Plant's Deficiencies"),
+            isLoading ? const CircularProgressIndicator() : Text(result),
             Column(
               children: [
                 SizedBox(
@@ -63,7 +62,9 @@ class _DiseaseViewState extends State<DiseaseView> {
                           // context.push(Routes.login.path);
                         },
                         child: const Text(
-                            style: TextStyle(color: Colors.black),
+                            style: TextStyle(
+                              color: Colors.black,
+                            ),
                             'Capture another image'))),
                 SizedBox(
                     width: double.infinity,
@@ -76,9 +77,11 @@ class _DiseaseViewState extends State<DiseaseView> {
                           setState(() {
                             isLoading = true;
                           });
-                          checkDiseases(widget.image)
-                              .then((value) {})
-                              .whenComplete(() {
+                          checkDiseases(widget.image).then((value) {
+                            setState(() {
+                              result = value['detection_result'];
+                            });
+                          }).whenComplete(() {
                             setState(() {
                               isLoading = false;
                             });
