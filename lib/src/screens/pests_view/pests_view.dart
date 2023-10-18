@@ -19,7 +19,15 @@ class PestsView extends StatefulWidget {
 
 class _PestsViewState extends State<PestsView> {
   bool _isLoading = false;
-  String _result = "Identify your Plant's Deficiencies";
+  String label = "Bacteria Leaf Blight";
+  String _result = "A cultural control method that is recommended for the rice "
+      "hispa is to avoid over fertilizing the field. Close plant spacing results "
+      "in greater leaf densities that can tolerate higher hispa numbers. "
+      "To prevent egg laying of the pests, the shoot tips can be cut. "
+      "Clipping and burying shoots in the mud can reduce grub populations "
+      "by 75âˆ’92%.Among the biological control agents, there are small wasps "
+      "that attack the eggs and larvae. A reduviid bug eats upon the adults. "
+      "There are three fungal pathogens that attack the adults";
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +58,37 @@ class _PestsViewState extends State<PestsView> {
                   ]),
               child: Image.file(File(widget.image.path)),
             ),
-            _isLoading ? const CircularProgressIndicator() : Text(_result),
+            _isLoading
+                ? const CircularProgressIndicator()
+                : ConstrainedBox(
+                    constraints: const BoxConstraints(maxHeight: 200),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 4),
+                              child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    label,
+                                    style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  )),
+                            ),
+                            Center(
+                              child: Text(_result,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                  )),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
             Column(
               children: [
                 SizedBox(
@@ -85,6 +123,17 @@ class _PestsViewState extends State<PestsView> {
                             setState(() {
                               _result = value.detectionResults;
                             });
+                          }).catchError((error) {
+                            SnackBar snackBar;
+                            snackBar = SnackBar(
+                                backgroundColor: Colors.redAccent.shade400,
+                                content: Text(
+                                  error.toString(),
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold),
+                                ));
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
                           }).whenComplete(() {
                             setState(() {
                               _isLoading = false;

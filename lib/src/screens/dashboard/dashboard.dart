@@ -72,7 +72,7 @@ class _DashboardState extends State<Dashboard> {
                         children: [
                           Icon(
                             Icons.add_a_photo_outlined,
-                            size: 36,
+                            size: 48,
                             color: Colors.green,
                           ),
                           Padding(
@@ -113,7 +113,7 @@ class _DashboardState extends State<Dashboard> {
                         children: [
                           Icon(
                             Icons.adb_outlined,
-                            size: 36,
+                            size: 48,
                             color: Colors.green,
                           ),
                           Padding(
@@ -154,7 +154,7 @@ class _DashboardState extends State<Dashboard> {
                         children: [
                           Icon(
                             Icons.account_tree_rounded,
-                            size: 36,
+                            size: 48,
                             color: Colors.green,
                           ),
                           Padding(
@@ -195,7 +195,7 @@ class _DashboardState extends State<Dashboard> {
                         children: [
                           Icon(
                             Icons.add_chart_outlined,
-                            size: 36,
+                            size: 48,
                             color: Colors.green,
                           ),
                           Padding(

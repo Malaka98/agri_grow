@@ -19,7 +19,12 @@ class DiseaseView extends StatefulWidget {
 
 class _DiseaseViewState extends State<DiseaseView> {
   bool isLoading = false;
-  String result = "Identify your Plant's Deficiencies";
+  String label = "Bacteria Leaf Blight";
+  String result = "Keep the field clean and free of weeds. "
+      "Avoid flow of irrigation water from affected field. "
+      "Let the field dry completely before the ploughing process. "
+      "Avoid excessive nitrogen fertilization."
+      "Plow stubble and straw into soil after harvest.";
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +55,37 @@ class _DiseaseViewState extends State<DiseaseView> {
                   ]),
               child: Image.file(File(widget.image.path)),
             ),
-            isLoading ? const CircularProgressIndicator() : Text(result),
+            isLoading
+                ? const CircularProgressIndicator()
+                : ConstrainedBox(
+              constraints: const BoxConstraints(maxHeight: 200),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 4),
+                        child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              label,
+                              style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold),
+                            )),
+                      ),
+                      Center(
+                        child: Text(result,
+                            style: const TextStyle(
+                              fontSize: 16,
+                            )),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
             Column(
               children: [
                 SizedBox(
@@ -86,6 +121,17 @@ class _DiseaseViewState extends State<DiseaseView> {
                             setState(() {
                               result = value.detectionResults;
                             });
+                          }).catchError((error) {
+                            SnackBar snackBar;
+                            snackBar = SnackBar(
+                                backgroundColor: Colors.redAccent.shade400,
+                                content: Text(
+                                  error.toString(),
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold),
+                                ));
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
                           }).whenComplete(() {
                             setState(() {
                               isLoading = false;

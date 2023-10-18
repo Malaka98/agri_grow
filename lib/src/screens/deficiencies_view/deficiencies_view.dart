@@ -19,7 +19,22 @@ class DeficienciesView extends StatefulWidget {
 
 class _DeficienciesViewState extends State<DeficienciesView> {
   bool isLoading = false;
-  String result = "Identify your Plant's Deficiencies";
+  String label = "K Deficiency";
+  String result = "Estimate K input from indigenous sources to assess "
+      "site-specific K requirements.Increase K uptake by improving soil "
+      "management practices on root health (e.g., deep tillage to improve "
+      "percolation to at least 3-5 mm d-1 and to avoid excessively reducing "
+      "conditions in soil).Establish an adequate population of healthy rice "
+      "plants by using high-quality seed of a modern variety with multiple pest "
+      "resistance, and optimum crop maintenance (water and pest management)."
+      "Incorporate rice straw. If straw burning is the only option for crop "
+      "residue management, spread the straw evenly over the field "
+      "(e.g., as it is left after combine harvest) before burning. "
+      "Ash from burnt straw heaps should also be spread over the field."
+      "Apply optimum doses of N and P fertilizers and correct micronutrient "
+      "deficiencies. Apply K fertilizers, farmyard manure, or other materials "
+      "(rice husk, ash, night soil, compost) to replenish K removed in harvested "
+      "crop products";
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +45,7 @@ class _DeficienciesViewState extends State<DeficienciesView> {
           toolbarHeight: 60,
         centerTitle: true,
         title: const Text("Deficiencies"),
-      ),
+          scrolledUnderElevation: 0),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
@@ -50,7 +65,37 @@ class _DeficienciesViewState extends State<DeficienciesView> {
                   ]),
               child: Image.file(File(widget.image.path)),
             ),
-            isLoading ? const CircularProgressIndicator() : Text(result),
+            isLoading
+                ? const CircularProgressIndicator()
+                : ConstrainedBox(
+                    constraints: const BoxConstraints(maxHeight: 200),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 4),
+                              child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    label,
+                                    style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  )),
+                            ),
+                            Center(
+                              child: Text(result,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                  )),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
             Column(
               children: [
                 SizedBox(
@@ -85,6 +130,20 @@ class _DeficienciesViewState extends State<DeficienciesView> {
                               .then((PredictResult value) {
                             setState(() {
                               result = value.detectionResults;
+                            });
+                          }).catchError((error) {
+                            SnackBar snackBar;
+                            snackBar = SnackBar(
+                                backgroundColor: Colors.redAccent.shade400,
+                                content: Text(
+                                  error.toString(),
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold),
+                                ));
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                          }).whenComplete(() {
+                            setState(() {
                               isLoading = false;
                             });
                           });

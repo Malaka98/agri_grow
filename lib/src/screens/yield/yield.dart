@@ -24,7 +24,7 @@ class _YieldState extends State<Yield> {
         leadingWidth: 100,
         toolbarHeight: 60,
         centerTitle: true,
-        title: const Text("Yield"),
+          title: const Text("Yield Recommendation"),
           scrolledUnderElevation: 0),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -61,11 +61,12 @@ class _YieldState extends State<Yield> {
                   ),
                   TextFormField(
                     maxLength: 300,
-                    // validator: (text) {
-                    //   return ref
-                    //       .read(authServiceProvider(ref))
-                    //       .passwordValidator(text);
-                    // },
+                    validator: (String? value) {
+                      if (value!.isEmpty) {
+                        return "Please text";
+                      }
+                      return null;
+                    },
                     maxLines: 4,
                     decoration: const InputDecoration(
                         hintText:
