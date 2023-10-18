@@ -2,6 +2,7 @@ import 'package:agry_go/src/config/app_setting_config.dart';
 import 'package:agry_go/src/routes/route_config.dart';
 import 'package:agry_go/src/utils/dio_exception.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 final dio = Dio();
@@ -20,6 +21,7 @@ Future<void> configureDio() async {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   await configureDio();
   runApp(const MyApp());
 }

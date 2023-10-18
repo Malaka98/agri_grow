@@ -1,5 +1,6 @@
 import 'package:agry_go/src/routes/route_config.dart';
 import 'package:agry_go/src/screens/login/widgets/login_form.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -11,8 +12,35 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  void loginHandler(username, password) {
-    context.push(Routes.dashboard.path);
+  void loginHandler(username, password) async {
+    SnackBar snackBar;
+    try {
+      final credential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: username, password: password);
+      if (context.mounted) context.push(Routes.dashboard.path);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'invalid-email') {
+        if (context.mounted) {
+          snackBar = SnackBar(
+              backgroundColor: Colors.redAccent.shade400,
+              content: const Text(
+                "Invalid Email",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ));
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        }
+      } else if (e.code == 'INVALID_LOGIN_CREDENTIALS') {
+        if (context.mounted) {
+          snackBar = SnackBar(
+              backgroundColor: Colors.redAccent.shade400,
+              content: const Text(
+                "Invalid credentials",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ));
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        }
+      }
+    }
   }
 
   @override

@@ -30,77 +30,91 @@ class _YieldState extends State<Yield> {
         padding: const EdgeInsets.all(10.0),
         child: Form(
             key: _formKey,
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 10.0, bottom: 30.0),
-                  child: Container(
-                      height: 250.0,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10.0, bottom: 30.0),
+                    child: Container(
+                        height: 250.0,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black.withOpacity(0.3),
+                                  spreadRadius: 1,
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 1))
+                            ]),
+                        child: Container(
+                          margin: const EdgeInsets.all(10.0),
+                          child: _isLoading
+                              ? const Center(child: CircularProgressIndicator())
+                              : SingleChildScrollView(
+                                  child: Text(
+                                  _result,
+                                  style: const TextStyle(fontSize: 16),
+                                )),
+                        )),
+                  ),
+                  TextFormField(
+                    maxLength: 300,
+                    // validator: (text) {
+                    //   return ref
+                    //       .read(authServiceProvider(ref))
+                    //       .passwordValidator(text);
+                    // },
+                    maxLines: 4,
+                    decoration: const InputDecoration(
+                        hintText:
+                            "Please type in your query or describe the issue, and I'll provide recommendations accordingly",
+                        contentPadding: EdgeInsets.fromLTRB(4, 0, 4, 0),
+                        border: OutlineInputBorder()),
+                    onSaved: (value) {
+                      _txt = value;
+                    },
+                  ),
+                  SizedBox(
                       width: double.infinity,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.black.withOpacity(0.3),
-                                spreadRadius: 1,
-                                blurRadius: 8,
-                                offset: const Offset(0, 1))
-                          ]),
-                      child: Container(
-                        margin: const EdgeInsets.all(10.0),
-                        child: _isLoading
-                            ? const Center(child: CircularProgressIndicator())
-                            : SingleChildScrollView(
-                                child: Text(
-                                _result,
-                                style: const TextStyle(fontSize: 16),
-                              )),
-                      )),
-                ),
-                TextFormField(
-                  maxLength: 300,
-                  // validator: (text) {
-                  //   return ref
-                  //       .read(authServiceProvider(ref))
-                  //       .passwordValidator(text);
-                  // },
-                  decoration: const InputDecoration(
-                      labelText: "Text",
-                      hintText: "Enter your Password",
-                      contentPadding: EdgeInsets.fromLTRB(4, 0, 4, 0),
-                      border: OutlineInputBorder()),
-                  onSaved: (value) {
-                    _txt = value;
-                  },
-                ),
-                SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                        style: TextButton.styleFrom(
-                            backgroundColor: Colors.green.shade700,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5))),
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            _formKey.currentState!.save();
-                            setState(() {
-                              _isLoading = true;
-                            });
-                            yieldApi(_txt!).then((value) {
+                      child: ElevatedButton(
+                          style: TextButton.styleFrom(
+                              backgroundColor: Colors.green.shade700,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5))),
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              _formKey.currentState!.save();
                               setState(() {
-                                _result = value.msg;
+                                _isLoading = true;
                               });
-                            }).whenComplete(() {
-                              setState(() {
-                                _isLoading = false;
+                              yieldApi(_txt!).then((value) {
+                                setState(() {
+                                  _result = value.msg;
+                                });
+                              }).catchError((error) {
+                                SnackBar snackBar;
+                                snackBar = SnackBar(
+                                    backgroundColor: Colors.redAccent.shade400,
+                                    content: Text(
+                                      error.toString(),
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ));
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackBar);
+                              }).whenComplete(() {
+                                setState(() {
+                                  _isLoading = false;
+                                });
                               });
-                            });
-                          }
-                        },
-                        child: const Text(
-                            style: TextStyle(color: Colors.white), 'Submit')))
-              ],
+                            }
+                          },
+                          child: const Text(
+                              style: TextStyle(color: Colors.white), 'Submit')))
+                ],
+              ),
             )),
       ),
     );

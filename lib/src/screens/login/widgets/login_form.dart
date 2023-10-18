@@ -18,11 +18,12 @@ class LoginFrom extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
             child: TextFormField(
               maxLength: 30,
-              // validator: (text) {
-              //   return ref
-              //       .read(authServiceProvider(ref))
-              //       .usernameValidator(text);
-              // },
+              validator: (String? value) {
+                if (value!.isEmpty) {
+                  return "Please Enter name";
+                }
+                return null;
+              },
               decoration: const InputDecoration(
                   labelText: "Name",
                   hintText: "Enter your Username",
@@ -38,14 +39,15 @@ class LoginFrom extends StatelessWidget {
             child: TextFormField(
               obscureText: true,
               maxLength: 20,
-              // validator: (text) {
-              //   return ref
-              //       .read(authServiceProvider(ref))
-              //       .passwordValidator(text);
-              // },
+              validator: (String? value) {
+                if (value!.isEmpty) {
+                  return "Please Enter Password";
+                }
+                return null;
+              },
               decoration: const InputDecoration(
                   labelText: "Password",
-                  hintText: "Enter your Password",
+                  hintText: "Please Enter Password",
                   contentPadding: EdgeInsets.fromLTRB(4, 0, 4, 0),
                   border: OutlineInputBorder()),
               onSaved: (value) {

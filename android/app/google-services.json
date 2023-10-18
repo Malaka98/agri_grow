@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "789161994900",
+    "project_id": "agry-grow",
+    "storage_bucket": "agry-grow.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:789161994900:android:1ec2ee858adeeeb24d2281",
+        "android_client_info": {
+          "package_name": "com.exelk.agry_go"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBU874YbTtwFPL5JYhq8o7mj3BhGHLyLCk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
