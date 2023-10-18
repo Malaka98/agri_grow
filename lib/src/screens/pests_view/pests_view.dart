@@ -19,7 +19,7 @@ class PestsView extends StatefulWidget {
 
 class _PestsViewState extends State<PestsView> {
   bool _isLoading = false;
-  String label = "Bacteria Leaf Blight";
+  String label = "Hispa";
   String _result = "A cultural control method that is recommended for the rice "
       "hispa is to avoid over fertilizing the field. Close plant spacing results "
       "in greater leaf densities that can tolerate higher hispa numbers. "
