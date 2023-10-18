@@ -2,18 +2,18 @@ import 'package:agry_go/src/routes/route_config.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class LoginFrom extends StatelessWidget {
+class SingUpFrom extends StatelessWidget {
   final Function loginHandlerCB;
-  static final GlobalKey<FormState> _loginFormKey = GlobalKey<FormState>();
+  static final GlobalKey<FormState> _sinUpFormKey = GlobalKey<FormState>();
   static String? _username;
   static String? _password;
 
-  const LoginFrom({Key? key, required this.loginHandlerCB}) : super(key: key);
+  const SingUpFrom({Key? key, required this.loginHandlerCB}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: _loginFormKey,
+      key: _sinUpFormKey,
       child: Column(
         children: [
           Padding(
@@ -27,7 +27,7 @@ class LoginFrom extends StatelessWidget {
                 return null;
               },
               decoration: const InputDecoration(
-                  labelText: "Name",
+                  labelText: "Email",
                   hintText: "Enter your Username",
                   contentPadding: EdgeInsets.fromLTRB(4, 0, 4, 0),
                   border: OutlineInputBorder()),
@@ -57,6 +57,27 @@ class LoginFrom extends StatelessWidget {
               },
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+            child: TextFormField(
+              obscureText: true,
+              maxLength: 20,
+              validator: (String? value) {
+                if (value!.isEmpty) {
+                  return "Please Enter Password";
+                }
+                return null;
+              },
+              decoration: const InputDecoration(
+                  labelText: "Re-enter Password",
+                  hintText: "Please Enter Password",
+                  contentPadding: EdgeInsets.fromLTRB(4, 0, 4, 0),
+                  border: OutlineInputBorder()),
+              onSaved: (value) {
+                _password = value;
+              },
+            ),
+          ),
           SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -65,8 +86,8 @@ class LoginFrom extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5))),
                   onPressed: () {
-                    if (_loginFormKey.currentState!.validate()) {
-                      _loginFormKey.currentState!.save();
+                    if (_sinUpFormKey.currentState!.validate()) {
+                      _sinUpFormKey.currentState!.save();
                       loginHandlerCB(_username, _password);
                     }
                   },
@@ -74,24 +95,6 @@ class LoginFrom extends StatelessWidget {
                       style: TextStyle(color: Colors.white), 'Log In'))),
           const SizedBox(
             height: 10,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text("Don't have account?"),
-              InkWell(
-                child: const Padding(
-                  padding: EdgeInsets.only(left: 2.0),
-                  child: Text(
-                    "Please Register",
-                    style: TextStyle(color: Colors.green),
-                  ),
-                ),
-                onTap: () {
-                  context.push(Routes.singUp.path);
-                },
-              )
-            ],
           )
         ],
       ),

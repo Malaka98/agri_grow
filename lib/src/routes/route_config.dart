@@ -6,6 +6,7 @@ import 'package:agry_go/src/screens/diseases/diseases.dart';
 import 'package:agry_go/src/screens/login/login.dart';
 import 'package:agry_go/src/screens/pests/pests.dart';
 import 'package:agry_go/src/screens/pests_view/pests_view.dart';
+import 'package:agry_go/src/screens/singup/singup.dart';
 import 'package:agry_go/src/screens/yield/yield.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
@@ -17,6 +18,7 @@ import '../widgets/transition_animation.dart';
 enum Routes {
   initial('app_root', '/'),
   login('login', '/login'),
+  singUp('sing_p', '/sing_up'),
   dashboard('dashboard', '/dashboard'),
   diseases('diseases', '/diseases'),
   diseasesView('diseases_view', '/diseases_view'),
@@ -48,6 +50,12 @@ final GoRouter routerConfig =
       path: Routes.login.path,
       pageBuilder: (BuildContext context, GoRouterState state) {
         return customPageTransition(context, state, const Login());
+      }),
+  GoRoute(
+      name: Routes.singUp.name,
+      path: Routes.singUp.path,
+      pageBuilder: (BuildContext context, GoRouterState state) {
+        return customPageTransition(context, state, const SingUp());
       }),
   GoRoute(
       name: Routes.dashboard.name,
