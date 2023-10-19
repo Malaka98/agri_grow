@@ -12,31 +12,102 @@ class AppRoot extends StatefulWidget {
 class _AppRootState extends State<AppRoot> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
+    return SafeArea(
+      child: Scaffold(
+          body: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.center,
+                end: Alignment.bottomLeft,
+                colors: [
+              Colors.green.shade100,
+              Colors.green.shade50,
+              Colors.white70,
+              Colors.white
+            ])),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          // mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Center(
-              child: SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                      style: TextButton.styleFrom(
-                          backgroundColor: Colors.green.shade700,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5))),
-                      onPressed: () {
-                        context.push(Routes.login.path);
-                      },
-                      child: const Text(
-                          style: TextStyle(color: Colors.white),
-                          'Get Started'))),
-            )
+            Container(
+              margin: const EdgeInsets.only(left: 70.0, top: 70.0),
+              height: 450,
+              decoration: BoxDecoration(
+                  image: const DecorationImage(
+                      image: AssetImage("assets/app_root.png"),
+                      fit: BoxFit.fitWidth,
+                      opacity: 0.8),
+                  border: Border.all(width: 0, color: Colors.green.shade900),
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(20.0),
+                      bottomLeft: Radius.circular(20.0)),
+                  color: Colors.green.shade900),
+            ),
+            Container(
+              width: double.infinity,
+              height: 60,
+              decoration: BoxDecoration(
+                image: const DecorationImage(
+                    image: AssetImage("assets/app_root2.png"),
+                    fit: BoxFit.cover,
+                    opacity: 0.8),
+                color: Colors.green.shade900,
+                border: Border.all(width: 0, color: Colors.transparent),
+              ),
+              child: FittedBox(
+                alignment: Alignment.centerLeft,
+                child: InkWell(
+                  child: Container(
+                    width: 250,
+                    height: 60,
+                    decoration: BoxDecoration(
+                        border: Border.all(width: 0, color: Colors.white),
+                        borderRadius: const BorderRadius.only(
+                            topRight: Radius.circular(40.0),
+                            bottomRight: Radius.circular(40.0)),
+                        color: Colors.white),
+                    child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(
+                              "Get Started",
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.green.shade800,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Icon(
+                              Icons.arrow_forward_rounded,
+                              size: 32,
+                              color: Colors.green.shade800,
+                            )
+                          ],
+                        )),
+                  ),
+                  onTap: () {
+                    context.push(Routes.login.path);
+                  },
+                ),
+              ),
+            ),
+            Flexible(
+                child: Container(
+              margin: const EdgeInsets.only(left: 150.0),
+              decoration: BoxDecoration(
+                  image: const DecorationImage(
+                    image: AssetImage("assets/app_root2.png"),
+                    fit: BoxFit.none,
+                  ),
+                  borderRadius:
+                      const BorderRadius.only(topLeft: Radius.circular(20.0)),
+                  border: Border.all(width: 0, color: Colors.transparent),
+                  color: Colors.transparent),
+            ))
           ],
         ),
-      ),
-    ));
+      )),
+    );
   }
 }
