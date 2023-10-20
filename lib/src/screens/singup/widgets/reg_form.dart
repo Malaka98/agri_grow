@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../routes/route_config.dart';
 
 class SingUpFrom extends StatelessWidget {
   final Function loginHandlerCB;
   static final GlobalKey<FormState> _sinUpFormKey = GlobalKey<FormState>();
-  static String? _username;
+  static String? _email;
+  static String? _name;
   static String? _password;
-  static String? _confirm_password;
 
   const SingUpFrom({Key? key, required this.loginHandlerCB}) : super(key: key);
 
@@ -27,11 +30,31 @@ class SingUpFrom extends StatelessWidget {
               },
               decoration: const InputDecoration(
                   labelText: "Email",
-                  hintText: "Enter your Username",
+                  hintText: "Enter your Email",
                   contentPadding: EdgeInsets.fromLTRB(4, 0, 4, 0),
                   border: OutlineInputBorder()),
               onSaved: (value) {
-                _username = value;
+                _email = value;
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+            child: TextFormField(
+              maxLength: 30,
+              validator: (String? value) {
+                if (value!.isEmpty) {
+                  return "Please Enter Name";
+                }
+                return null;
+              },
+              decoration: const InputDecoration(
+                  labelText: "Name",
+                  hintText: "Enter your Name",
+                  contentPadding: EdgeInsets.fromLTRB(4, 0, 4, 0),
+                  border: OutlineInputBorder()),
+              onSaved: (value) {
+                _name = value;
               },
             ),
           ),
@@ -51,6 +74,9 @@ class SingUpFrom extends StatelessWidget {
                   hintText: "Please Enter Password",
                   contentPadding: EdgeInsets.fromLTRB(4, 0, 4, 0),
                   border: OutlineInputBorder()),
+              onChanged: (value) {
+                _password = value;
+              },
               onSaved: (value) {
                 _password = value;
               },
@@ -65,6 +91,9 @@ class SingUpFrom extends StatelessWidget {
                 if (value!.isEmpty) {
                   return "Please Enter Confirmation Password";
                 }
+                if (value != _password) {
+                  return "Confirmation password does not match";
+                }
                 return null;
               },
               decoration: const InputDecoration(
@@ -72,9 +101,6 @@ class SingUpFrom extends StatelessWidget {
                   hintText: "Please Enter Password",
                   contentPadding: EdgeInsets.fromLTRB(4, 0, 4, 0),
                   border: OutlineInputBorder()),
-              onSaved: (value) {
-                _confirm_password = value;
-              },
             ),
           ),
           SizedBox(
@@ -87,13 +113,31 @@ class SingUpFrom extends StatelessWidget {
                   onPressed: () {
                     if (_sinUpFormKey.currentState!.validate()) {
                       _sinUpFormKey.currentState!.save();
-                      loginHandlerCB(_username, _password);
+                      loginHandlerCB(_email, _name, _password);
                     }
                   },
                   child: const Text(
-                      style: TextStyle(color: Colors.white), 'Sing Up'))),
+                      style: TextStyle(color: Colors.white), 'Sign Up'))),
           const SizedBox(
             height: 10,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("You have an account?"),
+              InkWell(
+                child: const Padding(
+                  padding: EdgeInsets.only(left: 2.0),
+                  child: Text(
+                    "Please Login",
+                    style: TextStyle(color: Colors.green),
+                  ),
+                ),
+                onTap: () {
+                  context.push(Routes.login.path);
+                },
+              )
+            ],
           )
         ],
       ),

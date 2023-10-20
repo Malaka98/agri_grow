@@ -1,7 +1,9 @@
+import 'package:agry_go/src/routes/route_config.dart';
 import 'package:agry_go/src/screens/singup/widgets/reg_form.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SingUp extends StatefulWidget {
   const SingUp({super.key});
@@ -11,20 +13,32 @@ class SingUp extends StatefulWidget {
 }
 
 class _SingUpState extends State<SingUp> {
-  void loginHandler(username, password) async {
+  bool isLoading = false;
+
+  void loginHandler(email, name, password) async {
     SnackBar snackBar;
+    setState(() {
+      isLoading = true;
+    });
     try {
       final credential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: username,
+        email: email,
         password: password,
       );
       if (credential.user?.uid != null) {
         CollectionReference users =
             FirebaseFirestore.instance.collection('user');
-        users.add({"uid": credential.user?.uid});
+        users.add({"uid": credential.user?.uid, "name": name});
       }
+      setState(() {
+        isLoading = false;
+      });
+      if (context.mounted) context.push(Routes.login.path);
     } on FirebaseAuthException catch (e) {
+      setState(() {
+        isLoading = false;
+      });
       snackBar = SnackBar(
           backgroundColor: Colors.redAccent.shade400,
           content: Text(
@@ -32,12 +46,10 @@ class _SingUpState extends State<SingUp> {
             style: const TextStyle(fontWeight: FontWeight.bold),
           ));
       if (context.mounted) ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      // if (e.code == 'weak-password') {
-      //   print('The password provided is too weak.');
-      // } else if (e.code == 'email-already-in-use') {
-      //   print('The account already exists for that email.');
-      // }
     } catch (e) {
+      setState(() {
+        isLoading = false;
+      });
       snackBar = SnackBar(
           backgroundColor: Colors.redAccent.shade400,
           content: const Text(
@@ -62,6 +74,15 @@ class _SingUpState extends State<SingUp> {
               image: DecorationImage(
                   image: AssetImage("assets/login.png"), fit: BoxFit.none)),
           height: MediaQuery.of(context).size.height / 2,
+          child: isLoading
+              ? const Center(
+                  child:
+                      CircularProgressIndicator(color: Colors.lightGreenAccent),
+                )
+              : SizedBox(
+                  height: MediaQuery.of(context).size.height / 2,
+                  width: double.infinity,
+                ),
         ),
         SingleChildScrollView(
           child: Column(
@@ -70,7 +91,7 @@ class _SingUpState extends State<SingUp> {
               const SizedBox(height: 100.0),
               const Padding(
                 padding: EdgeInsets.only(left: 10.0),
-                child: Text("sing Up to", style: TextStyle(fontSize: 24)),
+                child: Text("sign Up to", style: TextStyle(fontSize: 24)),
               ),
               const Padding(
                 padding: EdgeInsets.only(left: 10.0, bottom: 20.0),
