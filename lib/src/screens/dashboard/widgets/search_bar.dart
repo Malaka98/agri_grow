@@ -1,4 +1,6 @@
+import 'package:agry_go/src/routes/route_config.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SearchBarApp extends StatefulWidget {
   const SearchBarApp({super.key});
@@ -17,6 +19,9 @@ class _SearchBarAppState extends State<SearchBarApp> {
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: TextField(
+          onTap: () {
+            context.push(Routes.yield.path);
+          },
           textAlignVertical: TextAlignVertical.bottom,
           controller: _searchController,
           decoration: InputDecoration(
