@@ -27,7 +27,7 @@ class LoginFrom extends StatelessWidget {
                 return null;
               },
               decoration: const InputDecoration(
-                  labelText: "Name",
+                  labelText: "Email",
                   hintText: "Enter your Username",
                   contentPadding: EdgeInsets.fromLTRB(4, 0, 4, 0),
                   border: OutlineInputBorder()),

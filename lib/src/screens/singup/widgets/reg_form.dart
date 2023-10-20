@@ -1,12 +1,11 @@
-import 'package:agry_go/src/routes/route_config.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class SingUpFrom extends StatelessWidget {
   final Function loginHandlerCB;
   static final GlobalKey<FormState> _sinUpFormKey = GlobalKey<FormState>();
   static String? _username;
   static String? _password;
+  static String? _confirm_password;
 
   const SingUpFrom({Key? key, required this.loginHandlerCB}) : super(key: key);
 
@@ -64,7 +63,7 @@ class SingUpFrom extends StatelessWidget {
               maxLength: 20,
               validator: (String? value) {
                 if (value!.isEmpty) {
-                  return "Please Enter Password";
+                  return "Please Enter Confirmation Password";
                 }
                 return null;
               },
@@ -74,7 +73,7 @@ class SingUpFrom extends StatelessWidget {
                   contentPadding: EdgeInsets.fromLTRB(4, 0, 4, 0),
                   border: OutlineInputBorder()),
               onSaved: (value) {
-                _password = value;
+                _confirm_password = value;
               },
             ),
           ),

@@ -15,12 +15,18 @@ class _SingUpState extends State<SingUp> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
-      child: Container(
-        decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("assets/login.png"), fit: BoxFit.cover)),
-        height: double.infinity,
-        child: SingleChildScrollView(
+            child: Stack(
+      children: [
+        Container(
+          decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(30.0),
+                  bottomRight: Radius.circular(30.0)),
+              image: DecorationImage(
+                  image: AssetImage("assets/login.png"), fit: BoxFit.none)),
+          height: MediaQuery.of(context).size.height / 2,
+        ),
+        SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -74,8 +80,8 @@ class _SingUpState extends State<SingUp> {
               ),
             ],
           ),
-        ),
-      ),
-    ));
+        )
+      ],
+    )));
   }
 }
