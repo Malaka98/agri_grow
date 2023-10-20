@@ -66,16 +66,23 @@ class _DashboardState extends State<Dashboard> {
                                 blurRadius: 8,
                                 offset: const Offset(0, 1))
                           ]),
-                      child: const Column(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Icon(
-                            Icons.add_a_photo_outlined,
-                            size: 48,
-                            color: Colors.green,
+                          Container(
+                            decoration: BoxDecoration(
+                                image: const DecorationImage(
+                                    image:
+                                        AssetImage("assets/deficiencies.png"),
+                                    fit: BoxFit.cover),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(10.0)),
+                                color: Colors.cyan.shade50),
+                            height: 64,
+                            width: 64,
                           ),
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.only(top: 2.0),
                             child: Text(
                               "Deficiencies",
@@ -107,16 +114,21 @@ class _DashboardState extends State<Dashboard> {
                                 blurRadius: 8,
                                 offset: const Offset(0, 2))
                           ]),
-                      child: const Column(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Icon(
-                            Icons.adb_outlined,
-                            size: 48,
-                            color: Colors.green,
+                          Container(
+                            decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage("assets/pets.png"),
+                                    fit: BoxFit.none),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0))),
+                            height: 64,
+                            width: 64,
                           ),
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.only(top: 2.0),
                             child: Text(
                               "Pests",
@@ -148,16 +160,22 @@ class _DashboardState extends State<Dashboard> {
                                 blurRadius: 8,
                                 offset: const Offset(0, 2))
                           ]),
-                      child: const Column(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Icon(
-                            Icons.account_tree_rounded,
-                            size: 48,
-                            color: Colors.green,
+                          Container(
+                            decoration: BoxDecoration(
+                                image: const DecorationImage(
+                                    image: AssetImage("assets/diseases.png"),
+                                    fit: BoxFit.cover),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(10.0)),
+                                color: Colors.cyan.shade50),
+                            height: 64,
+                            width: 64,
                           ),
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.only(top: 2.0),
                             child: Text(
                               "Diseases",
@@ -189,16 +207,22 @@ class _DashboardState extends State<Dashboard> {
                                 blurRadius: 8,
                                 offset: const Offset(0, 2))
                           ]),
-                      child: const Column(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Icon(
-                            Icons.add_chart_outlined,
-                            size: 48,
-                            color: Colors.green,
+                          Container(
+                            decoration: BoxDecoration(
+                                image: const DecorationImage(
+                                    image: AssetImage("assets/yield.png"),
+                                    fit: BoxFit.cover),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(10.0)),
+                                color: Colors.cyan.shade50),
+                            height: 64,
+                            width: 64,
                           ),
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.only(top: 2.0),
                             child: Text(
                               "Get Recommendation",

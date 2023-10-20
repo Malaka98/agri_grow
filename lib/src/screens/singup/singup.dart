@@ -1,4 +1,6 @@
 import 'package:agry_go/src/screens/singup/widgets/reg_form.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SingUp extends StatefulWidget {
@@ -9,7 +11,42 @@ class SingUp extends StatefulWidget {
 }
 
 class _SingUpState extends State<SingUp> {
-  void loginHandler(username, password) async {}
+  void loginHandler(username, password) async {
+    SnackBar snackBar;
+    try {
+      final credential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: username,
+        password: password,
+      );
+      if (credential.user?.uid != null) {
+        CollectionReference users =
+            FirebaseFirestore.instance.collection('user');
+        users.add({"uid": credential.user?.uid});
+      }
+    } on FirebaseAuthException catch (e) {
+      snackBar = SnackBar(
+          backgroundColor: Colors.redAccent.shade400,
+          content: Text(
+            e.message ?? "Internal Error",
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ));
+      if (context.mounted) ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      // if (e.code == 'weak-password') {
+      //   print('The password provided is too weak.');
+      // } else if (e.code == 'email-already-in-use') {
+      //   print('The account already exists for that email.');
+      // }
+    } catch (e) {
+      snackBar = SnackBar(
+          backgroundColor: Colors.redAccent.shade400,
+          content: const Text(
+            "Internal Error",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ));
+      if (context.mounted) ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
