@@ -105,7 +105,7 @@ class _SingUpState extends State<SingUp> {
                               color: Colors.grey.shade600,
                             ),
                             textAlign: TextAlign.start,
-                            "Please log in to your account to continue:"),
+                            "Please sing in to your account to continue:"),
                       ),
                       Container(
                         margin: const EdgeInsets.all(24.0),

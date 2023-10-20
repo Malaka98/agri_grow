@@ -19,12 +19,8 @@ class DiseaseView extends StatefulWidget {
 
 class _DiseaseViewState extends State<DiseaseView> {
   bool isLoading = false;
-  String label = "Bacteria Leaf Blight";
-  String result = "Keep the field clean and free of weeds. "
-      "Avoid flow of irrigation water from affected field. "
-      "Let the field dry completely before the ploughing process. "
-      "Avoid excessive nitrogen fertilization."
-      "Plow stubble and straw into soil after harvest.";
+  String label = "Result Pending...";
+  String result = "Result Pending...";
 
   @override
   Widget build(BuildContext context) {
@@ -119,6 +115,7 @@ class _DiseaseViewState extends State<DiseaseView> {
                           checkDiseases(widget.image)
                               .then((PredictResult value) {
                             setState(() {
+                              label = value.label;
                               result = value.detectionResults;
                             });
                           }).catchError((error) {

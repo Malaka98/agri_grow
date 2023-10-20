@@ -19,22 +19,8 @@ class DeficienciesView extends StatefulWidget {
 
 class _DeficienciesViewState extends State<DeficienciesView> {
   bool isLoading = false;
-  String label = "K Deficiency";
-  String result = "Estimate K input from indigenous sources to assess "
-      "site-specific K requirements.Increase K uptake by improving soil "
-      "management practices on root health (e.g., deep tillage to improve "
-      "percolation to at least 3-5 mm d-1 and to avoid excessively reducing "
-      "conditions in soil).Establish an adequate population of healthy rice "
-      "plants by using high-quality seed of a modern variety with multiple pest "
-      "resistance, and optimum crop maintenance (water and pest management)."
-      "Incorporate rice straw. If straw burning is the only option for crop "
-      "residue management, spread the straw evenly over the field "
-      "(e.g., as it is left after combine harvest) before burning. "
-      "Ash from burnt straw heaps should also be spread over the field."
-      "Apply optimum doses of N and P fertilizers and correct micronutrient "
-      "deficiencies. Apply K fertilizers, farmyard manure, or other materials "
-      "(rice husk, ash, night soil, compost) to replenish K removed in harvested "
-      "crop products";
+  String label = "Result Pending...";
+  String result = "Result Pending...";
 
   @override
   Widget build(BuildContext context) {
@@ -129,6 +115,7 @@ class _DeficienciesViewState extends State<DeficienciesView> {
                           checkDeficiencies(widget.image)
                               .then((PredictResult value) {
                             setState(() {
+                              label = value.label;
                               result = value.detectionResults;
                             });
                           }).catchError((error) {

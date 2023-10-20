@@ -19,23 +19,16 @@ class PestsView extends StatefulWidget {
 
 class _PestsViewState extends State<PestsView> {
   bool _isLoading = false;
-  String label = "Hispa";
-  String _result = "A cultural control method that is recommended for the rice "
-      "hispa is to avoid over fertilizing the field. Close plant spacing results "
-      "in greater leaf densities that can tolerate higher hispa numbers. "
-      "To prevent egg laying of the pests, the shoot tips can be cut. "
-      "Clipping and burying shoots in the mud can reduce grub populations "
-      "by 75âˆ’92%.Among the biological control agents, there are small wasps "
-      "that attack the eggs and larvae. A reduviid bug eats upon the adults. "
-      "There are three fungal pathogens that attack the adults";
+  String label = "Result Pending...";
+  String _result = "Result Pending...";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          leading: const BackButtonLeading(),
-          leadingWidth: 100,
-          toolbarHeight: 60,
+        leading: const BackButtonLeading(),
+        leadingWidth: 100,
+        toolbarHeight: 60,
         centerTitle: true,
         title: const Text("Pests"),
       ),
@@ -121,6 +114,7 @@ class _PestsViewState extends State<PestsView> {
                           });
                           checkPets(widget.image).then((PredictResult value) {
                             setState(() {
+                              label = value.label;
                               _result = value.detectionResults;
                             });
                           }).catchError((error) {

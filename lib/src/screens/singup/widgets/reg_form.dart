@@ -91,7 +91,7 @@ class SingUpFrom extends StatelessWidget {
                     }
                   },
                   child: const Text(
-                      style: TextStyle(color: Colors.white), 'Log In'))),
+                      style: TextStyle(color: Colors.white), 'Sing Up'))),
           const SizedBox(
             height: 10,
           )
