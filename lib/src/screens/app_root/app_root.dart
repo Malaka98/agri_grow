@@ -45,7 +45,7 @@ class _AppRootState extends State<AppRoot> {
             ),
             Container(
               width: double.infinity,
-              height: 60,
+              height: 70,
               decoration: BoxDecoration(
                 image: const DecorationImage(
                     image: AssetImage("assets/app_root2.png"),
